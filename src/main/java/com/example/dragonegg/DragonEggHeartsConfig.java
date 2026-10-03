@@ -52,6 +52,9 @@ public final class DragonEggHeartsConfig {
         if (data.eggCoordsMessageIntervalTicks < 20) {
             data.eggCoordsMessageIntervalTicks = 20;
         }
+        if (data.splashPotionDurationMultiplier < 1.0) {
+            data.splashPotionDurationMultiplier = 1.0;
+        }
     }
 
     private static void save() {
@@ -79,6 +82,8 @@ public final class DragonEggHeartsConfig {
         public boolean blockHopperEggInsertion = true;
         public boolean announceEggCoordinates = true;
         public boolean restoreEggToEndPortalOnLoss = true;
+        public boolean boostSplashPotionDuration = true;
+        public double splashPotionDurationMultiplier = 10.0;
         public double extraHearts = 0.0;
         public int eggCoordsMessageIntervalTicks = 72000;
 

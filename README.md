@@ -6,6 +6,7 @@ A Fabric mod for Minecraft 26.1.x where carrying a Dragon Egg grants bonus max h
 
 - Bonus hearts while a Dragon Egg is in your player inventory.
 - Bonus max health will save across relog/rejoin while carrying the egg.
+- Optional 10x longer potion duration on splash potions thrown while carrying a Dragon Egg.
 - Optional glowing outline while carrying a Dragon Egg.
 - Optional red player name while carrying a Dragon Egg.
 - Optional restriction to prevent storing Dragon Eggs in containers/shulkers/bundles.
@@ -56,6 +57,8 @@ Options:
 - `announceEggCoordinates` (boolean): If true, the mod periodically broadcasts Dragon Egg coordinates.
 - `eggCoordsMessageIntervalTicks` (number): Tick interval between coordinate broadcasts (minimum 20).
 - `restoreEggToEndPortalOnLoss` (boolean): If true, eggs lost to void/hazard are restored to the End portal area.
+- `boostSplashPotionDuration` (boolean): If true, splash potions thrown by a Dragon Egg carrier last longer.
+- `splashPotionDurationMultiplier` (number): Duration multiplier applied to thrown splash potions (minimum 1).
 - `debugLogging` (boolean): Enables extra server log output for troubleshooting.
 
 ## Building

@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.example.dragonegg.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AllayEntityMixin",
     "BlockItemMixin",
@@ -19,6 +19,7 @@
     "ServerPlayNetworkHandlerMixin",
     "ShulkerBoxSlotMixin",
     "SlotMixin",
+    "ThrownSplashPotionMixin",
     "WorldSetBlockStateMixin"
   ],
   "injectors": {

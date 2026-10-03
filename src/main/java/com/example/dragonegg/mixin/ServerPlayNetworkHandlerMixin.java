@@ -40,7 +40,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
         }
 
         ServerLevel world = (ServerLevel) player.level();
-        Entity target = world.getEntityOrPart(packet.entityId());
+        Entity target = packet.getTarget(world);
         if (!(target instanceof Allay allay)) {
             return;
         }

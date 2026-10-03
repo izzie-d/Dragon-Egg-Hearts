@@ -94,7 +94,7 @@ public class DragonEggHeartsMod implements ModInitializer {
                     int nowTick = serverWorld.getServer().getTickCount();
                     Integer previousTick = lastEntityUseWarningTick.get(player.getUUID());
                     if (previousTick == null || nowTick != previousTick) {
-                        player.sendSystemMessage(Component.literal("Dragon Egg cannot be used with that entity."));
+                        player.displayClientMessage(Component.literal("Dragon Egg cannot be used with that entity."), false);
                         lastEntityUseWarningTick.put(player.getUUID(), nowTick);
                     }
                 }
@@ -454,7 +454,7 @@ public class DragonEggHeartsMod implements ModInitializer {
             return;
         }
 
-        player.sendSystemMessage(Component.literal("Dragon Egg cannot be given to allays."));
+        player.displayClientMessage(Component.literal("Dragon Egg cannot be given to allays."), false);
         lastAllayBlockWarningTick.put(player.getUUID(), nowTick);
 
         if (DragonEggHeartsConfig.get().debugLogging) {
@@ -655,6 +655,20 @@ public class DragonEggHeartsMod implements ModInitializer {
 
     public static boolean areAllayEggInteractionsBlocked() {
         return DragonEggHeartsConfig.get().blockAllayEggInteractions;
+    }
+
+    public static float getSplashPotionDurationScale(ServerPlayer thrower) {
+        DragonEggHeartsConfig.ConfigData config = DragonEggHeartsConfig.get();
+        if (!config.boostSplashPotionDuration || !hasDragonEgg(thrower)) {
+            return 1.0f;
+        }
+
+        float scale = (float) config.splashPotionDurationMultiplier;
+        if (config.debugLogging) {
+            System.out.println("[DragonEggHearts][Potion] splash potion from "
+                    + thrower.getName().getString() + " duration scale=" + scale);
+        }
+        return scale;
     }
 
     public static boolean isEggRestorationEnabled() {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- Splash potions thrown by a Dragon Egg carrier now apply a configurable duration multiplier (default 10x).
+- Added config toggles `boostSplashPotionDuration` and `splashPotionDurationMultiplier`.
+
 ## 1.0.3 - 2026-04-11
 - Updated the mod for Minecraft 26.1.1 and 26.1.2.
 - Retargeted the build to Minecraft 26.1.2 with Fabric Loader 0.18.6+ and Fabric API 0.145.4+26.1.2.

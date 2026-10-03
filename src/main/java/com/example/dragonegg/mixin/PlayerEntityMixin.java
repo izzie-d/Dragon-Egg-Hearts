@@ -8,7 +8,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,7 +19,6 @@ public class PlayerEntityMixin {
     private void dragonegghearts$blockDragonEggAllayInteract(
             Entity entity,
             InteractionHand hand,
-            Vec3 location,
             CallbackInfoReturnable<InteractionResult> cir
     ) {
         if (!DragonEggHeartsMod.areAllayEggInteractionsBlocked()) {

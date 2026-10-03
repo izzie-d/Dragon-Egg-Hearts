@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerInput;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -27,7 +27,7 @@ public abstract class ScreenHandlerMixin {
     private void dragonegghearts$warnAndBlockContainerStore(
             int slotIndex,
             int button,
-            ContainerInput actionType,
+            ClickType actionType,
             Player player,
             CallbackInfo ci
     ) {
@@ -35,20 +35,20 @@ public abstract class ScreenHandlerMixin {
         if (player.level().isClientSide()) return;
         if (!shouldBlock(slotIndex, button, actionType, player)) return;
 
-        player.sendSystemMessage(Component.literal("Dragon Egg cannot be stored in containers."));
+        player.displayClientMessage(Component.literal("Dragon Egg cannot be stored in containers."), false);
         ci.cancel();
     }
 
-    private boolean shouldBlock(int slotIndex, int button, ContainerInput actionType, Player player) {
+    private boolean shouldBlock(int slotIndex, int button, ClickType actionType, Player player) {
         AbstractContainerMenu handler = (AbstractContainerMenu) (Object) this;
 
-        if (actionType == ContainerInput.PICKUP || actionType == ContainerInput.PICKUP_ALL) {
+        if (actionType == ClickType.PICKUP || actionType == ClickType.PICKUP_ALL) {
             if (!isContainerSlot(slotIndex)) return false;
             ItemStack cursor = handler.getCarried();
             return !cursor.isEmpty() && cursor.getItem() == Items.DRAGON_EGG;
         }
 
-        if (actionType == ContainerInput.QUICK_MOVE) {
+        if (actionType == ClickType.QUICK_MOVE) {
             if (!dragonegghearts$isValidSlotIndex(slotIndex)) return false;
             Slot source = this.slots.get(slotIndex);
             ItemStack sourceStack = source.getItem();
@@ -58,7 +58,7 @@ public abstract class ScreenHandlerMixin {
                     && hasContainerSlots();
         }
 
-        if (actionType == ContainerInput.SWAP) {
+        if (actionType == ClickType.SWAP) {
             if (!isContainerSlot(slotIndex)) return false;
             if (button < 0 || button >= Inventory.getSelectionSize()) return false;
             ItemStack hotbarStack = player.getInventory().getItem(button);
